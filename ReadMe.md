@@ -35,6 +35,25 @@ my_list = [1, 2, 3, 4, 5, 6]
 np_array = np.array(my_list)
 ```
 
+If we wanted to select the first element in this array, we would call:
+```python
+print(np_array[0])
+1
+```
+
+We can also select negative indices, which count from opposite end of the array and start at -1. 
+```python
+print(np_array[-1])
+6
+```
+
+If we wanted to select multiple elements in the array, we can define a range, such as np_array[1:3], which will select all the elements from np_array[1] to np_array[3], including np_array[1] but excluding np_array[3].
+```python
+print(np_array[1:4])
+[2, 3, 4]
+```
+
+
 #### Two-Dimensional Arrays
 
 We can create an array of arrays and it's named a two-dimensional array.
@@ -51,6 +70,24 @@ This code will not run because the [] for the outer lists are missing:
 ```python
 np.array([68, 16, 73],
          [61, 79, 30])
+```
+
+The syntax for selecting from a 2-d array is np.array[row,column].
+A two-dimensional array has two axes: axis 0 represents the values that share the same indexical position (are in the same column), and axis 1 represents the values that share an array (are in the same row). This is illustrated below.
+
+![2-D Arrays](./img/2-D_Arrays.png)
+
+```python
+sample2D = np.array([[00, 01, 02, 03, 04],
+                     [10, 11, 12, 13, 14],
+                     [20, 21, 22, 23, 24]])
+print(saple2D[1,2])
+12 
+```
+To selects the first column
+```python
+print(sample2D[:,0])
+[00, 10, 20]
 ```
 
 ### Creating an Array from a CSV 
