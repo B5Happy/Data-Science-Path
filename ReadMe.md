@@ -54,7 +54,7 @@ print(np_array[1:4])
 ```
 
 
-#### Two-Dimensional Arrays
+#### 2-Dimensional Arrays
 
 We can create an array of arrays and it's named a two-dimensional array.
 
@@ -78,7 +78,7 @@ A two-dimensional array has two axes: axis 0 represents the values that share th
 ![2-D Arrays](./img/2-D_Arrays.png)
 
 ```python
-sample2D = np.array([[00, 01, 02, 03, 04],
+sample2D = np.array([[00, 1, 2, 3, 4],
                      [10, 11, 12, 13, 14],
                      [20, 21, 22, 23, 24]])
 print(saple2D[1,2])
@@ -89,6 +89,34 @@ To selects the first column
 print(sample2D[:,0])
 [00, 10, 20]
 ```
+
+#### 3-Dimensional Arrays
+
+Let's see how a 3-D Array look like:
+```python
+# A 3-D array, shape-(2, 2, 2)
+np.array([[[0, 1],
+           [2, 3]],
+
+          [[4, 5],
+           [6, 7]]])
+```
+
+Thus d3_array[0, 1, 0] specifies the element residing in sheet-0, at row-1 and column-0:
+```python
+# retrieving a single element from a 3D-array
+>>> d3_array[0, 1, 0]
+2
+```
+
+d3_array[:, 0, 0] specifies the elements in row-0 and column-0 of both sheets:
+```python
+# retrieving a 1D sub-array from a 3D-array
+>>> d3_array[:, 0, 0]
+array([0, 4])
+```
+
+![3-D Arrays](./img/AllArray.png)
 
 ### Creating an Array from a CSV 
 
@@ -106,8 +134,6 @@ print(csv_array)
 
 > In this case, our file sample.csv has values separated by commas, so we use delimiter=',', but sometimes you could find files with other delimiters.
 
-> Print to see array.
-
 ### Operations with NumPy Arrays 
 
 Generally, NumPy arrays are more efficient than lists.
@@ -117,7 +143,7 @@ Let's see it, by comparing how to add a number to each value in a python list ve
 ```python
 # With a list
 l = [1, 2, 3, 4, 5]
-l_plus_3 = []
+l_plus_6 = []
 for i in range(len(l)):
     l_plus_6.append(l[i] + 6)
 ```
@@ -143,6 +169,22 @@ print(c)
 [ 7,  9, 11, 13, 15]
 ```
 
-
 > To find more check [this docs](https://www.scipy-lectures.org/intro/numpy/operations.html)
+
+### Logical Operations with Arrays
+
+Another useful thing that arrays can do is perform element-wise logical operations. For instance, suppose we want to know how many elements in an array are greater than 5. We can easily write some code that checks to see whether this statement evaluates to True for each item in the array, without having to use a for loop :
+```python
+sample = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+print(sample > 5)
+[False, False, False, False, False, True, True, True, True, True]
+```
+We can then use logical operators to evaluate and select items based on certain criteria. To select all elements from the previous array that are greater than 5, we'd write the following:
+```python
+print(sample[sample > 5])
+[6, 7, 8, 9, 10]
+```
+We can also combine logical statements to further specify our criteria. To do so, we place each statement in parentheses and use boolean operators like & (and) and | (or).
+
+
 
