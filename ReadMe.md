@@ -186,5 +186,40 @@ print(sample[sample > 5])
 ```
 We can also combine logical statements to further specify our criteria. To do so, we place each statement in parentheses and use boolean operators like & (and) and | (or).
 
+## Introduction to Statistics with NumPy
+
+
+### Introduction
+We'll explore how we can use NumPy to analyze data.
+The statistical concepts that we'll cover include:
+-Mean
+-Median
+-Percentiles
+-Interquartile Range
+-Outliers
+-Standard Deviation
+
+### NumPy and Mean
+
+The first statistical concept we'll explore is mean, also commonly referred to as an average. NumPy has a built-in function to calculate the average or mean of arrays: **np.mean**
+```python
+sample = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+print(np.mean(sample))
+5.5
+```
+
+### Mean and Logical Operations
+
+As we know, a logical operator will evaluate each item in an array to see if it matches the specified condition. If the item matches the given condition, the item will evaluate as **True** and equal 1. If it does not match, it will be **False** and equal 0.
+
+When **np.mean** calculates a logical statement, the resulting mean value will be equivalent to the total number of True items divided by the total array length.
+
+For example:
+```python
+sample = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+print(np.mean(sample > 5))
+0.5
+```
+The logical statement **sample > 5** evaluates which numbers were greater than 5, and assigns them a value of 1. **np.mean** adds all of the 1s up and divides them by the **length of sample**. The resulting output tells us that 50% of numbers are more than 5.
 
 
