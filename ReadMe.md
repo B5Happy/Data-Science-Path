@@ -222,4 +222,35 @@ print(np.mean(sample > 5))
 ```
 The logical statement **sample > 5** evaluates which numbers were greater than 5, and assigns them a value of 1. **np.mean** adds all of the 1s up and divides them by the **length of sample**. The resulting output tells us that 50% of numbers are more than 5.
 
+### Calculating the Mean of 2D Arrays
+
+If we have a two-dimensional array, **np.mean** can calculate the means of the larger array as well as the interior values.
+
+Let's imagine a game of ring toss at a carnival. In this game, you have three different chances to get all three rings onto a stick. In our ring_toss array, each interior array (the arrays within the larger array) is one try, and each number is one ring toss. 1 represents a successful toss, 0 represents a fail.
+
+First, we can use **np.mean** to find the mean across all the arrays:
+```python
+ring_toss = np.array([[1, 0, 0], 
+                      [0, 0, 1], 
+                      [1, 0, 1]])
+print(np.mean(ring_toss))
+0.44444444444444442
+```
+To find the means of each interior array, we specify axis 1 (the "rows"):
+```python
+print(np.mean(ring_toss, axis=1))
+[ 0.33333333,  0.33333333,  0.66666667]
+```
+To find the means of each index position (i.e, mean of all 1st tosses, mean of all 2nd tosses, ...), we specify axis 0 (the "columns"):
+```python
+print(np.mean(ring_toss, axis=1))
+[ 0.33333333,  0.33333333,  0.66666667]
+```
+To find the means of each index position (i.e, mean of all 1st tosses, mean of all 2nd tosses, ...), we specify axis 0 (the "columns"):
+```python
+print(np.mean(ring_toss, axis=0))
+[ 0.66666667,  0.        ,  0.66666667]
+```
+
+
 
