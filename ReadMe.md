@@ -314,3 +314,49 @@ print(np.median(my_array))
 ### Mean vs Median
 
 In a dataset, the median value can provide an important comparison to the mean. Unlike a mean, the median is not affected by outliers. This becomes important in skewed datasets, datasets whose values are not distributed evenly.
+
+### Percentiles
+
+As we know, the median is the middle of a dataset: it is the number for which 50% of the samples are below, and 50% of the samples are above. But what if we wanted to find a point at which 40% of the samples are below, and 60% of the samples are above?
+
+This type of point is called a percentile. The Nth percentile is defined as the point N% of samples lie below it. So the point where 40% of samples are below is called the 40th percentile. Percentiles are useful measurements because they can tell us where a particular value is situated within the greater dataset.
+
+For example:
+```python
+sample = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+```
+There are 11 numbers in the dataset. The 40th percentile will have 40% of the 10 remaining numbers below it (40% of 10 is 4) and 60% of the numbers above it (60% of 10 is 6). So in this example, the 40th percentile is 5.
+
+In NumPy, we can calculate percentiles using the function **np.percentile**, which takes two arguments: the array and the percentile to calculate.
+
+Here's how we would use NumPy to calculate the 40th percentile of array **sample**:
+```python
+sample = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+print(np.percentile(sample, 40))
+5
+```
+
+Some percentiles have specific names:
+
+-The 25th percentile is called the first quartile
+-The 50th percentile is called the median
+-The 75th percentile is called the third quartile
+
+The minimum, first quartile, median, third quartile, and maximum of a dataset are called a five-number summary. This set of numbers is a great thing to compute when we get a new dataset.
+
+The difference between the first and third quartile is a value called the interquartile range. For example, say we have the following array:
+```python
+sample = [1, 2, 3, 4, 4, 4, 6, 6, 7, 8, 8]
+```
+We can calculate the 25th and 75th percentiles using np.percentile:
+```python
+print(np.percentile(sample, 25))
+3.5
+print(np.percentile(sample, 75))
+6.5
+```
+Then to find the interquartile range, we subtract the value of the 25th percentile from the value of the 75th:
+```python
+6.5 - 3.5 = 3
+```
+50% of the dataset will lie within the interquartile range. The interquartile range gives us an idea of how spread out our data is. The smaller the interquartile range value, the less variance in our dataset. The greater the value, the larger the variance.
