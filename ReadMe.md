@@ -252,5 +252,65 @@ print(np.mean(ring_toss, axis=0))
 [ 0.66666667,  0.        ,  0.66666667]
 ```
 
+### Outliers
 
+As we can see, the mean is a helpful way to quickly understand different parts of our data. However, the mean is highly influenced by the specific values in our data set. What happens when one of those values is significantly different from the rest?
 
+Values that don’t fit within the majority of a dataset are known as outliers. It’s important to identify outliers because if they go unnoticed, they can skew our data and lead to error in our analysis (like determining the mean). They can also be useful in pointing out errors in our data collection.
+
+When we're able to identify outliers, we can then determine if they were due to an error in sample collection or whether or not they represent a significant but real deviation from the mean.
+
+Suppose we want to determine the average height for 3rd graders. We measure several students at the local school, but accidentally measure one student in centimeters rather than in inches. If we're not paying attention, our dataset could end up looking like this:
+```python
+[50, 50, 51, 49, 48, 127]
+```
+In this case, 127 would be an outlier.
+
+Some outliers aren’t the result of a mistake. For instance, suppose that one of our 3rd graders had skipped a grade and was actually a year younger than everyone else in the class:
+```python
+[50, 50, 51, 49, 48, 45]
+```
+She might be significantly shorter at 45", but her height would still be an outlier.
+
+Suppose that another student was just unusually tall for his age:
+[50, 50, 51, 49, 48, 58.5]
+His height of 58.5" would also be an outlier.
+
+We can use the NumPy function **np.sort** to sort our data.
+
+Let’s go back to our 3rd grade height example, and imagine an 8th grader walked into our experiement:
+```python
+heights = np.array([49.7, 46.9, 62, 47.2, 47, 48.3, 48.7])
+```
+If we use np.sort, we can immediately identify the taller student since their height (62") is noticeably outside the range of the dataset:
+```python
+print(np.sort(heights))
+[ 46.9,  47. ,  47.2,  48.3,  48.7,  49.7,  62]
+```
+Use **np.delete()** to returns a new array with sub-arrays along an axis deleted
+```python
+outliers = 62
+print(np.delete(heights, outliers))
+[ 46.9,  47. ,  47.2,  48.3,  48.7,  49.7]
+```
+
+### Median 
+
+Another key metric that we can use in data analysis is the median. The median is the middle value of a dataset that’s been ordered in terms of magnitude (from lowest to highest).
+```python
+sample1 = np.array( [1, 1, 2, 3, 4, 5, 5])
+sample2 = np.array( [1, 1, 2, 3, 4, 5, 5, 6])
+```
+For the sample1, the median would be 3.
+For the sample2, the median would be 3.5
+
+NumPy also has a function to calculate the median, **np.median**:
+```python
+my_array = np.array([50, 38, 291, 59, 14])
+print(np.median(my_array))
+50.0
+```
+
+### Mean vs Median
+
+In a dataset, the median value can provide an important comparison to the mean. Unlike a mean, the median is not affected by outliers. This becomes important in skewed datasets, datasets whose values are not distributed evenly.
