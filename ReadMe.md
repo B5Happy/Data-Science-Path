@@ -360,3 +360,15 @@ Then to find the interquartile range, we subtract the value of the 25th percenti
 6.5 - 3.5 = 3
 ```
 50% of the dataset will lie within the interquartile range. The interquartile range gives us an idea of how spread out our data is. The smaller the interquartile range value, the less variance in our dataset. The greater the value, the larger the variance.
+
+### Standard Deviation
+
+Similar to the interquartile range, the standard deviation tells us the spread of the data. The larger the standard deviation, the more spread out our data is from the center. The smaller the standard deviation, the more the data is clustered around the mean.
+
+We can find the standard deviation of a dataset using the Numpy function **np.std**:
+```python
+sample = np.array([65, 36, 52, 91, 63, 79])
+print(np.std(sample))
+17.716909687891082
+```
+
