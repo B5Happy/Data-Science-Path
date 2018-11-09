@@ -386,5 +386,46 @@ This lesson will cover:
 -How standard deviations relate to normal distributions
 -Binomial distributions
 
+### Histogram
 
+We can visualize a dataset information using a chart called a histogram.
+```python
+sample = [1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 4, 4, 4, 4, 5]
+```
+A simple histogram might show us how many 1's, 2's, 3's, etc. we have in this dataset.
 
+![Histogram1](./img/histogram-1.png)
+
+Suppose we had a larger dataset with values ranging from 0 to 50. We might not want to know exactly how many 0's, 1's, 2's, etc. we have.
+
+Instead, we might want to know how many values fall between 0 and 5, 6 and 10, 11 and 15, etc.
+
+These groupings are called bins. All bins in a histogram are always the same size. The width of each bin is the distance between the minimum and maximum values of each bin. In our example, the width of each bin would be 5.
+
+And if we were to graph this histogram, it would look like this:
+
+![Histogram2](./img/histogram-2.png)
+
+We can graph histograms using a Python module known as Matplotlib.
+
+```python
+# This imports the plotting package.  We only need to do this once.
+from matplotlib import pyplot as plt 
+
+# To create a histogram
+plt.hist(data)
+
+# This displays the histogram
+plt.show()
+```
+
+If you want a different number of bins, use the keyword bins. For instance, the following code would give us 5 bins, instead of 10:
+```python
+plt.hist(data, bins=5)
+```
+
+If you want a different range, you can pass in the minimum and maximum values that you want to histogram using the keyword range.
+```python
+# We pass 51 so that our range includes 50
+plt.hist(data, range=(20, 51))
+```
