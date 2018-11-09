@@ -429,3 +429,34 @@ If you want a different range, you can pass in the minimum and maximum values th
 # We pass 51 so that our range includes 50
 plt.hist(data, range=(20, 51))
 ```
+
+### Different Types of Distributions
+
+Histograms and their datasets can be classified based on the shape of the graphed values.
+
+One way to classify a dataset is by counting the number of distinct peaks present in the graph. Peaks represent concentrations of data. Let's look at the following examples:
+
+A unimodal dataset has only one distinct peak.
+![Unimodal-Distribution](./img/unimodalDis.svg)
+
+A bimodal dataset has two distinct peaks. This often happens when the data contains two different populations.
+![Bimodal-Distribution](./img/BiDis.svg)
+
+A multimodal dataset has more than two peaks.
+![Multimodal-Distribution](./img/MutltiDis.svg)
+
+A uniform dataset doesn't have any distinct peaks.
+![Uniform-Distribution](./img/uniDis.svg)
+
+Most of the datasets that we'll be dealing with will be unimodal (one peak). We can further classify unimodal distributions by describing where most of the numbers are relative to the peak.
+
+A symmetric dataset has equal amounts of data on both sides of the peak. Both sides should look about the same.
+![Symmetric](./img/sym.svg)
+
+A skew-right dataset has a long tail on the right of the peak, but most of the data is on the left.
+![skew-right](./img/sk.svg)
+
+A skew-left dataset has a long tail on the left of the peak, but most of the data is on the right.
+![skew-left](./img/sl.svg)
+
+
