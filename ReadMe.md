@@ -372,3 +372,19 @@ print(np.std(sample))
 17.716909687891082
 ```
 
+## Statistical Distributions with NumPy
+
+### Intro
+
+In this lesson, we are going to learn how to use NumPy to analyze different distributions, generate random numbers to produce datasets, and use Matplotlib to visualize our findings.
+
+This lesson will cover:
+
+-How to generate and graph histograms
+-How to identify different distributions by their shape
+-Normal distributions
+-How standard deviations relate to normal distributions
+-Binomial distributions
+
+
+
