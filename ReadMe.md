@@ -440,10 +440,10 @@ A unimodal dataset has only one distinct peak.
 ![Unimodal-Distribution](./img/unimodalDis.svg)
 
 A bimodal dataset has two distinct peaks. This often happens when the data contains two different populations.
-![Bimodal-Distribution](./img/BiDis.svg)
+![Bimodal-Distribution](./img/biDis.svg)
 
 A multimodal dataset has more than two peaks.
-![Multimodal-Distribution](./img/MutltiDis.svg)
+![Multimodal-Distribution](./img/mutltiDis.svg)
 
 A uniform dataset doesn't have any distinct peaks.
 ![Uniform-Distribution](./img/uniDis.svg)
