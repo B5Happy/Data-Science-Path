@@ -459,4 +459,21 @@ A skew-right dataset has a long tail on the right of the peak, but most of the d
 A skew-left dataset has a long tail on the left of the peak, but most of the data is on the right.
 ![skew-left](./img/sl.svg)
 
+### Normal Distribution
+
+The most common distribution in statistics is known as the normal distribution, which is a symmetric, unimodal distribution.
+
+Normal distributions are defined by their mean and standard deviation. The mean sets the "middle" of the distribution, and the standard deviation sets the "width" of the distribution. A larger standard deviation leads to a wider distribution. A smaller standard deviation leads to a skinnier distribution.
+
+Here are a few examples of normal distributions with different means and standard deviations:
+![normal-distribution](./img/ze.svg)
+
+We can generate our own normally distributed datasets using NumPy. 
+The NumPy library has several functions for generating random numbers, including one specifically built to generate a set of numbers that fit a normal distribution: **np.random.normal**. This function takes the following keyword arguments:
+-loc: the mean for the normal distribution
+-scale: the standard deviation of the distribution
+-size: the number of random numbers to generate
+```python
+sample = np.random.normal(0, 1, size=100000)
+```
 
