@@ -476,4 +476,21 @@ The NumPy library has several functions for generating random numbers, including
 ```python
 sample = np.random.normal(0, 1, size=100000)
 ```
+### Standard Deviations and Normal Distribution
 
+In a normal distribution, we know that the mean and the standard deviation determine certain characteristics of the shape of our data, but how exactly?
+
+We know that the standard deviation affects the "shape" of our normal distribution.
+
+Suppose that we have a normal distribution with a mean of 50 and a standard deviation of 10. When we say "within one standard deviation of the mean", this is what we are saying mathematically:
+```python
+lower_bound = mean - std
+            = 50 - 10
+            = 40
+
+upper_bound = mean + std
+            = 50 + 10
+            = 60
+```
+
+It turns out that we can expect about 68% of a dataset to be between 40 and 60, for this distribution.
