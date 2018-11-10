@@ -494,3 +494,55 @@ upper_bound = mean + std
 ```
 
 It turns out that we can expect about 68% of a dataset to be between 40 and 60, for this distribution.
+
+In fact, here are a few more helpful rules for normal distributions:
+-68% of our samples will fall between +/- 1 standard deviation of the mean
+-95% of our samples will fall between +/- 2 standard deviations of the mean
+-99.7% of our samples will fall between +/- 3 standard deviations of the mean
+
+### Binomial Distribution
+
+There are some complicated formulas for determining these types of probabilities. Luckily for us, we can use NumPy - specifically, its ability to generate random numbers. We can use these random numbers to model a distribution of numerical data that matches the real-life scenario we're interested in understanding.
+
+NumPy has a function for generating binomial distributions: **np.random.binomial**, which we can use to determine the probability of different outcomes.
+
+The function will return the number of successes for each "experiment".
+
+It takes the following arguments:
+-N: The number of samples or trials
+-P: The probability of success
+-size: The number of experiments
+
+Let's generate a bunch of "experiments" of a basketball player making 10 shots.
+```python
+# Let's generate 10,000 "experiments"
+# N = 10 shots
+# P = 0.30 (30% he'll get a free throw)
+
+a = np.random.binomial(10, 0.30, size=10000)
+```
+
+Now we have a record of 10,000 experiments. We can use Matplotlib to plot the results of all of these experiments:
+```python
+plt.hist(a, range=(0, 10), bins=10, normed=True)
+plt.xlabel('Number of "Free Throws"')
+plt.ylabel('Frequency')
+plt.show()
+```
+
+![Reslut](./img/ft.svg)
+
+
+A basketball player has a 30% chance of making any individual basket. He took 10 shots and made 4 of them, even though we only expected him to make 3. What percent chance did he have of making those 4 shots?
+
+We can calculate a different probability by counting the percent of experiments with the same outcome, using the np.mean function.
+
+Let's calculate the probability that he makes 4 baskets:
+```python
+a = np.random.binomial(10, 0.30, size=10000)
+np.mean(a == 4)
+0.1973
+```
+
+So, our basketball player has a roughly 20% chance of making 4 baskets
+This suggests that what we observed wasn't that unlikely. It's quite possible that he hasn't got any better, he just got lucky.
