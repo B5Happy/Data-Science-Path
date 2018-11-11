@@ -134,3 +134,40 @@ fstat, pval = f_oneway(scores_mathematicians, scores_writers, scores_psychologis
 
 The null hypothesis, in this case, is that all three populations have the same mean score on this videogame. If we reject this null hypothesis (if we get a p-value less than 0.05), we can say that we are reasonably confident that a pair of datasets is significantly different. After using only ANOVA, we can't make any conclusions on which two populations have a significant difference.
 
+### Tukey's Range Test
+
+We can perform a Tukey's Range Test to determine the difference between datasets.
+
+The function to perform Tukey's Range Test is pairwise_tukeyhsd, which is found in statsmodel, not scipy. We have to provide the function with one list of all of the data and a list of labels that tell the function which elements of the list are from which set. We also provide the significance level we want, which is usually 0.05.
+
+For example, if we were looking to compare mean scores of movies that are dramas, comedies, or documentaries, we would make a call to pairwise_tukeyhsd like this:
+```python
+movie_scores = np.concatenate([drama_scores, comedy_scores, documentary_scores])
+labels = ['drama'] * len(drama_scores) + ['comedy'] * len(comedy_scores) + ['documentary'] * len(documentary_scores)
+
+tukey_results = pairwise_tukeyhsd(movie_scores, labels, 0.05)
+```
+It will return a table of information, telling you whether or not to reject the null hypothesis for each pair of datasets.
+
+###Binomial Test
+
+So far, we have been working with numerical datasets. The tests we have looked at, the 1- and 2-Sample T-Tests, ANOVA, and Tukey's Range test, will not work if we can't find the means of our distributions and compare them.
+
+If we have a dataset where the entries are not numbers, but categories instead, we have to use different methods.
+
+To analyze a dataset like this, with two different possibilities for entries, we can use a Binomial Test. A Binomial Test compares a categorical dataset to some expectation.
+
+Examples include:
+-Comparing the actual percent of emails that were opened to the quarterly goals
+-Comparing the actual percentage of respondents who gave a certain survey response to the expected survey response
+-Comparing the actual number of heads from 1000 coin flips of a weighted coin to the expected number of heads
+
+The null hypothesis, in this case, would be that there is no difference between the observed behavior and the expected behavior. If we get a p-value of less than 0.05, we can reject that hypothesis and determine that there is a difference between the observation and expectation.
+
+SciPy has a function called binom_test, which performs a Binomial Test for you.
+
+**binom_test** requires three inputs, the number of observed successes, the number of total trials, and an expected probability of success. For example, with 1000 coin flips of a fair coin, we would expect a "success rate" (the rate of getting heads), to be 0.5, and the number of trials to be 1000. Let's imagine we get 525 heads. Is the coin weighted? This function call would look like:
+```python
+pval = binom_test(525, n=1000, p=0.5)
+```
+It returns a p-value, telling us how confident we can be that the sample of values was likely to occur with the specified probability. If we get a p-value less than 0.05, we can reject the null hypothesis and say that it is likely the coin is actually weighted, and that the probability of getting heads is statistically different than 0.5.
