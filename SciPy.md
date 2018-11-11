@@ -53,3 +53,72 @@ We have discussed how a hypothesis test is used to determine the validity of a n
 A p-value of 0.05 would mean that there is a 5% chance that the null hypothesis is true. This generally means there is a 5% chance that there is no difference between the two population means.
 
 Before conducting a hypothesis test, we determine the necessary threshold we would need before concluding that the results are significant. A higher p-value is more likely to give a false positive so if we want to be very sure that the result is not due to just chance, we will select a very small p-value.
+
+## Hypothesis Testting 
+
+### Types of Hypothesis Test
+
+When we are trying to compare datasets, we often need a way to be confident knowing if datasets are significantly different from each other.
+Some situations involve correlating numerical data like a professor expects an exam average to be roughly 75%, and wants to know if the actual scores line up with this expectation. Was the test actually too easy or too hard?
+
+Others involve categorical data, for example:
+a pollster wants to know if men and women have significantly different yogurt flavor preferences. Does a result where men more often answer "chocolate" as their favorite reflect a significant difference in the population?
+
+You will learn how about how we can use hypothesis testing to answer these questions. There are several different types of hypothesis tests for the various scenarios you may encounter. Luckily, SciPy has built-in functions that perform all of these tests for us, normally using just one line of code.
+
+For numerical data, we will cover:
+-One Sample T-Tests
+-Two Sample T-Tests
+-ANOVA
+-Tukey Tests
+
+For categorical data, we will cover:
+-Binomial Tests
+-Chi Square
+
+### 1 Sample T-Testing
+
+Let's imagine the fictional business BuyPie, which sends ingredients for pies to your household, so that you can make them from scratch. Suppose that a product manager wants the average age of visitors to BuyPie.com to be 30. In the past hour, the website had 100 visitors and the average age was 31. Are the visitors too old? Or is this just the result of chance and a small sample size?
+
+We can test this using a univariate T-test. A univariate T-test compares a sample mean to a hypothetical population mean. It answers the question "What is the probability that the sample came from a distribution with the desired mean?"
+
+When we conduct a hypothesis test, we want to first create a null hypothesis, which is a prediction that there is no significant difference. The null hypothesis that this test examines can be phrased as such: "The set of samples belongs to a population with the target mean".
+
+The result of the 1 Sample T Test is a p-value, which will tell us whether or not we can reject this null hypothesis. Generally, if we receive a p-value of less than 0.05, we can reject the null hypothesis and state that there is a significant difference.
+
+SciPy has a function called ttest_1samp, which performs a 1 Sample T-Test for you.
+
+**ttest_1samp** requires two inputs, a distribution of values and an expected mean:
+```python
+tstat, pval = ttest_1samp(example_distribution, expected_mean)
+print(pval)
+```
+It also returns two outputs: the t-statistic and the p-value — telling us how confident we can be that the sample of values came from a distribution with the mean specified.
+
+In the last exercise, we got a p-value that was much higher than 0.05, so we cannot reject the null hypothesis. Does this mean that if we wait for more visitors to BuyPie, the average age would definitely be 30 and not 31? Not necessarily. In fact, in this case, we know that the mean of our sample was 31.
+
+P-values give us an idea of how confident we can be in a result. Just because we don’t have enough data to detect a difference doesn’t mean that there isn’t one. Generally, the more samples we have, the smaller a difference we’ll be able to detect.
+
+### 2 Sample T-Test
+
+Suppose that last week, the average amount of time spent per visitor to a website was 25 minutes. This week, the average amount of time spent per visitor to a website was 28 minutes. Did the average time spent per visitor change? Or is this part of natural fluctuations?
+
+One way of testing whether this difference is significant is by using a 2 Sample T-Test. A 2 Sample T-Test compares two sets of data, which are both approximately normally distributed.
+
+The null hypothesis, in this case, is that the two distributions have the same mean.
+
+We can use SciPy's **ttest_ind** function to perform a 2 Sample T-Test. It takes the two distributions as inputs and returns the t-statistic (which we don't use), and a p-value.
+```python
+tstat, pval = ttest_ind(sample1, sample2)
+print(pval)
+```
+
+### Dangers of Multiple T-Tests
+
+Suppose that we own a chain of stores that sell ants, called VeryAnts. There are three different locations: A, B, and C. We want to know if the average ant sales over the past year are significantly different between the three locations.
+
+At first, it seems that we could perform T-tests between each pair of stores.
+
+We know that the p-value is the probability that we incorrectly reject the null hypothesis on each t-test. The more t-tests we perform, the more likely that we are to get a false positive, a Type I error.
+
+For a p-value of 0.05, if the null hypothesis is true then the probability of obtaining a significant result is 1 – 0.05 = 0.95. When we run another t-test, the probability of still getting a correct result is 0.95 * 0.95, or 0.9025. That means our probability of making an error is now close to 10%! This error probability only gets bigger with the more t-tests we do.
