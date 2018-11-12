@@ -1,4 +1,4 @@
-#Hypothesis Testing with SciPy
+# Hypothesis Testing with SciPy
 
 ## Statistical Concepts
 
@@ -149,7 +149,7 @@ tukey_results = pairwise_tukeyhsd(movie_scores, labels, 0.05)
 ```
 It will return a table of information, telling you whether or not to reject the null hypothesis for each pair of datasets.
 
-###Binomial Test
+### Binomial Test
 
 So far, we have been working with numerical datasets. The tests we have looked at, the 1- and 2-Sample T-Tests, ANOVA, and Tukey's Range test, will not work if we can't find the means of our distributions and compare them.
 
@@ -187,3 +187,8 @@ The input to **chi2_contingency** is a contingency table where:
 This table can have as many rows and columns as you need.
 
 In this case, the null hypothesis is that there's no significant difference between the datasets. We reject that hypothesis, and state that there is a significant difference between two of the datasets if we get a p-value less than 0.05.
+
+```python
+chi2, pval, dof, expected = chi2_contingency(X)
+print(pval)
+```
