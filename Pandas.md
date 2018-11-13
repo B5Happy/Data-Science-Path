@@ -38,3 +38,23 @@ df2 = pd.DataFrame([
     ],
     columns=['name', 'address', 'age'])
 ```
+
+### Comma Separated Variables (CSV)
+
+We now know how to create our own DataFrame. However, most of the time, we'll be working with datasets that already exist. One of the most common formats for big datasets is the CSV.
+
+The first row of a CSV contains column headings. All subsequent rows contain values. Each column heading and each variable is separated by a comma:
+```python
+column1,column2,column3
+value1,value2,value3
+```
+
+When you have data in a CSV, you can load it into a DataFrame in Pandas using .read_csv():
+```python
+pd.read_csv('my-csv-file.csv')
+```
+
+We can also save data to a CSV, using .to_csv().
+```python
+df.to_csv('new-csv-file.csv')
+```
