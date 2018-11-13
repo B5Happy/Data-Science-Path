@@ -49,12 +49,34 @@ column1,column2,column3
 value1,value2,value3
 ```
 
-When you have data in a CSV, you can load it into a DataFrame in Pandas using .read_csv():
+When you have data in a CSV, you can load it into a DataFrame in Pandas using **.read_csv()**:
 ```python
 pd.read_csv('my-csv-file.csv')
 ```
 
-We can also save data to a CSV, using .to_csv().
+We can also save data to a CSV, using **.to_csv()**.
 ```python
 df.to_csv('new-csv-file.csv')
 ```
+
+If it's a larger DataFrame, it's helpful to be able to inspect a few items without having to look at the entire DataFrame.
+
+The method **.head()** gives the first 5 rows of a DataFrame. If you want to see more rows, you can pass in the positional argument n. For example, **df.head(10)** would show the first 10 rows.
+
+The method **df.info()** gives some statistics for each column.
+
+### DataFrame Manipulation
+
+If you want to take the average or plot a histogram of the ages. In order to do either of these tasks, you'd need to select only a column.
+
+There are two possible syntaxes for selecting all values from a column:
+- df.columnname
+- df['columname']
+
+To select two or more columns from a DataFrame, we use a list of the column names. To create the DataFrame shown above, we would use:
+```python
+df = sample[['columnone', 'columntwo']]
+```
+
+If we want to select a single row of data. we can do it by **sample.iloc[7]**. DataFrames are zero-indexed, meaning that we start with the 0th row and count up from there.
+And to select multiple rows we can write **sample.iloc[2:7]** that select all rows from 2 to 6.
