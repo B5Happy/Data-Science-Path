@@ -80,3 +80,29 @@ df = sample[['columnone', 'columntwo']]
 
 If we want to select a single row of data. we can do it by **sample.iloc[7]**. DataFrames are zero-indexed, meaning that we start with the 0th row and count up from there.
 And to select multiple rows we can write **sample.iloc[2:7]** that select all rows from 2 to 6.
+
+### Manipulation with Logic
+
+You can use logic statement to retrive a set of data. For exmaple, if we want to select all row where price equal 10.
+```python
+df[df.price == 10]
+```
+
+We can use other logical statements, like:
+- Greater than >
+- Less than <
+- Not Equal !=
+
+You can expand your spesification with **|** means "or" and **&** means "and".
+
+We could use the **isin** command to check that **df.name** is one of a list of values, for example:
+```python
+df[df.name.isin(['Antoine',
+                'Sri',
+                'Vignesh',
+                'Koumar'])]
+```
+
+When we select a subset of a DataFrame using logic, we can end up with non-consecutive indices. This could be inelegant and makes it hard to use **.iloc()**.
+
+We can fix this using the method **.reset_index()**.
