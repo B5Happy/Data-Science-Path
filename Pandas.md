@@ -135,4 +135,77 @@ Finally, you can add a new column by performing a function on the existing colum
 df['After Tax'] = df.Price * 0.20
 ```
 
- 
+More over we can use **apply** function to apply a function to evry value in a particular column.
+For example, if we want to uppercase all first name:
+```python
+from string import upper
+
+df['First_name'] = df.FirstName.apply(upper)
+```
+
+### Lambda Function
+
+A lambda function is a way of defining a function in a single line of code. Usually, we would assign them to a variable.
+
+For example, the following lambda function multiplies a number by 2 and then adds 3:
+```python
+mylambda = lambda x: (x * 2) + 3
+print(mylambda(5))
+# Output
+13
+```
+
+We can make our lambdas more complex by using a modified form of an if statement.
+
+Suppose we want success if the statement is true else fail.
+```python
+# For a normal Function
+def myfunction(x):
+    if x == true:
+        return 'Success'
+    else:
+        return 'Fail'
+
+# For lambda Function
+myfunction = lambda x: 'Success' if 'Success' == True else 'Fail'
+
+# syntax
+lambda x: [OUTCOME IF TRUE] \
+    if [CONDITIONAL] \
+    else [OUTCOME IF FALSE]
+
+```
+
+In Pandas, we can use lambda functions to perform complex operations on columns. For example, suppose that we want to create a column containing the email provider for each email address in the following table:
+```python
+df['Email Provider'] = df.Email.apply(
+    lambda x: x.split('@')[-1]
+    )
+```
+
+We can also operate on multiple columns at once. If we use apply without specifying a single column and add the argument axis=1, the input to our lambda function will be an entire row, not a column. To access particular values of the row, we use the syntax row.column_name or row[‘column_name’].
+
+Suppose we have a table representing a grocery list:
+
+| Item	       | Price	| Is taxed?  |
+| ------------ | :----: | ----------:|
+| Apple	       | 1.00	| No         |
+| Milk	       | 4.20	| No         |
+| Paper Towels | 5.00	| Yes        |
+| Light Bulbs  | 3.75	| Yes        |
+
+If we want to add in the price with tax for each line, we’ll need to look at two columns: Price and Is taxed?.
+
+If Is taxed? is Yes, then we’ll want to multiply Price by 1.075 (for 7.5% sales tax).
+
+If Is taxed? is No, we’ll just have Price without multiplying it.
+
+We can create this column using a lambda function and the keyword axis=1:
+```python
+df['Price with Tax'] = df.apply(lambda row:
+     row['Price'] * 1.075
+     if row['Is taxed?'] == 'Yes'
+     else row['Price'],
+     axis=1
+)
+```
