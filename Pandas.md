@@ -65,7 +65,7 @@ The method **.head()** gives the first 5 rows of a DataFrame. If you want to see
 
 The method **df.info()** gives some statistics for each column.
 
-### DataFrame Manipulation
+### DataFrame Selection
 
 If you want to take the average or plot a histogram of the ages. In order to do either of these tasks, you'd need to select only a column.
 
@@ -81,7 +81,7 @@ df = sample[['columnone', 'columntwo']]
 If we want to select a single row of data. we can do it by **sample.iloc[7]**. DataFrames are zero-indexed, meaning that we start with the 0th row and count up from there.
 And to select multiple rows we can write **sample.iloc[2:7]** that select all rows from 2 to 6.
 
-### Manipulation with Logic
+### Selection with Logic
 
 You can use logic statement to retrive a set of data. For exmaple, if we want to select all row where price equal 10.
 ```python
@@ -106,3 +106,33 @@ df[df.name.isin(['Antoine',
 When we select a subset of a DataFrame using logic, we can end up with non-consecutive indices. This could be inelegant and makes it hard to use **.iloc()**.
 
 We can fix this using the method **.reset_index()**.
+
+## Manipulation of Dataframes
+
+### Intro 
+
+We will learn of to modify a Dataframe like:
+-Adding columns
+-How to use lambda function
+-Renaming columns
+
+### How to add a column
+
+We might want to add a new information.
+So we can add a new column, by giving a list of the same length as the existing DataFrame.
+For example:
+```python
+df['columnName'] = ['same', 'length', 'data']
+```
+
+If All the new rows has the same value. We can add like this:
+```python
+df['Super'] = True
+```
+
+Finally, you can add a new column by performing a function on the existing columns.
+```python
+df['After Tax'] = df.Price * 0.20
+```
+
+ 
