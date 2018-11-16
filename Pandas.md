@@ -209,3 +209,29 @@ df['Price with Tax'] = df.apply(lambda row:
      axis=1
 )
 ```
+
+### Renaming a Columns
+
+When we get our data from other sources, we often want to change the column names.
+You can change all of the column names at once by setting the .columns property to a different list. 
+```python
+df = pd.DataFrame({
+    'name': ['John', 'Jane', 'Sue', 'Fred'],
+    'age': [23, 29, 21, 18]
+})
+df.columns = ['First Name', 'Age']
+```
+>This command edits the existing DataFrame df.
+
+
+Or we can rename individual columns by using the .rename, for example:
+```python
+df = pd.DataFrame({
+    'name': ['John', 'Jane', 'Sue', 'Fred'],
+    'age': [23, 29, 21, 18]
+})
+df.rename(columns={
+    'name': 'First Name',
+    'age': 'Age'},
+    inplace=True)
+```
