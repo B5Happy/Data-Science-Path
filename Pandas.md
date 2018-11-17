@@ -235,3 +235,40 @@ df.rename(columns={
     'age': 'Age'},
     inplace=True)
 ```
+
+## Pandas Aggregates
+
+Aggregate is using one or more operations over a specified axis.Common aggregate statistics incluse mean, median, or standard deviation.
+
+We will also learn how to rearrange a DataFrame into a pivot table, which is a great way to compare data across two dimensions.
+
+### Statistics
+
+We will learn how to combine all of the values from a column for a single calculation.
+
+For example:
+- The DataFrame customers contains the names and ages of all of your customers. You want to find the median age:
+```python
+print(customers.age)
+> [23, 25, 31, 35, 35, 46, 62]
+print(customers.age.median())
+> 35
+```
+- The DataFrame inventory contains a list of types of t-shirts that your company makes. You want a list of the colors that your shirts come in.
+```python
+print(inventory.color)
+>> ['blue', 'blue', 'blue', 'blue', 'blue', 'green', 'green', 'orange', 'orange', 'orange']
+print(inventory.color.unique())
+>> ['blue', 'green', 'orange']
+```
+
+Command	Description:
+mean	Average of all values in column
+std	    Standard deviation
+median	Median
+max	    Maximum value in column
+min	    Minimum value in column
+count	Number of values in column
+nunique	Number of unique values in column
+unique	List of unique values in column
+
